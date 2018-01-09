@@ -18,7 +18,6 @@ class App extends Component {
   }
 
   removeChar = (index) => {
-    console.log("GINO" + index)
     const text = this.state.text.split("");
     text.splice(index, 1);
 
@@ -31,8 +30,6 @@ class App extends Component {
 
   listChars = () =>{
     return this.state.text.split("").map( (char, index) => {
-      console.log("index " + index)
-      console.log("char " + char)
      return <Char key={index} letter={char} onClick={this.removeChar.bind(this, index)}/>
     });
   }
