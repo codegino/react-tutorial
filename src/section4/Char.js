@@ -9,7 +9,9 @@ const char = (props) => {
     border: "1px solid black"
   }
 
-  return <p style={style} onClick={props.onClick}>{props.letter}</p>
+  return (
+        <div style={style} onClick={props.onClick}>{props.letter}</div>
+    )
 }
 
 export default char

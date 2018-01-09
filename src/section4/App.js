@@ -5,36 +5,29 @@ import './App.css';
 
 class App extends Component {
   state = {
-    length: 0,
     text: ""
   }
   changeTextHandler = (event) => {
-    const length = event.target.value.length;
     const text = event.target.value
     this.setState({
-      length,
       text
     })
   }
 
-  removeChar = (index) => {
+  removeCharHandler = (index) => {
     const text = this.state.text.split("");
     text.splice(index, 1);
-
-    console.log(text)
 
     this.setState({
       text: text.join("")
     })
   }
 
-  listChars = () =>{
-    return this.state.text.split("").map( (char, index) => {
-     return <Char key={index} letter={char} onClick={this.removeChar.bind(this, index)}/>
-    });
-  }
-
   render() {
+    const listChars = this.state.text.split("").map( (char, index) => {
+        return <Char key={index} letter={char} onClick={this.removeCharHandler.bind(this, index)}/>
+      });
+
     return (
       <div className="App">
         <ol>
@@ -47,8 +40,8 @@ class App extends Component {
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
         <input type="text" value={this.state.text} onChange={this.changeTextHandler}/>
-        <Validator length={this.state.length}/>
-        {this.listChars()}
+        <Validator length={this.state.text.length}/>
+        {listChars}
       </div>
     );
   }
